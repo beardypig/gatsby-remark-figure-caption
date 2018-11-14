@@ -5,13 +5,13 @@ const {createElement, replace} = require('./helpers')
 
 module.exports = ({markdownAST}, options = {}) => {
 	visit(markdownAST, 'image', node => {
-		if(!node.alt) return;
+		if(!node.title) return;
 
 		replace(node).with(
 			<unknown tagName='figure' className={options.figureClassName}>
-				<image {...node} alt={null} className={options.imageClassName}/>
+				<image {...node} className={options.imageClassName}/>
 				<paragraph tagName='figcaption' className={options.captionClassName}>
-					{node.alt}
+					{node.title}
 				</paragraph>
 			</unknown>
 		)
